@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    </head>
+<body style="max-width: 800px; margin: 0 auto;">
+    <main style="max-width: 500px; margin: 0 auto;">
+        <h1>Shortener</h1>
+        <p> {{ dat1 }}</p>
+        <form action="/" method="post" style="display: flex; flex-direction: column;">
+            {% csrf_token %}
+            <label>URL
+                <input type="text" name="url" placeholder="Enter URL">
+            </label>
+            <label>Short
+                <input type="text" name="short_url" placeholder="Short URL">
+            </label>
+            
+
+            <input type="submit" value="Shorten">
+        </form>
+
+        <div style="border: solid 1px black; height: auto; width: 100%; margin: 10px 0;" >
+            <h2>Shortened URLs</h2>
+            {% for url in data %}    
+                <p style="text-align: center;">
+                    <a style="text-decoration: none;" href="/{{ url.short_url }}">
+                        {{ url.short_url }}
+                    </a>
+                </p>
+            {% endfor %}
+        </div>
+
+    </main>
+    
+</html>
